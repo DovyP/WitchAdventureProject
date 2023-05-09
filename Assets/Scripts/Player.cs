@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,13 +12,41 @@ public class Player : MonoBehaviour
     [SerializeField] private float playerHeight;
     [SerializeField] private float interactDistance;
 
-    private bool isWalking;
-    private Vector3 lastInteractDirection;
-
     [Space(10)]
     [Header("References")]
     [SerializeField] private Inputs inputs;
     [SerializeField] private LayerMask countersLayerMask;
+
+
+    private bool isWalking;
+    private Vector3 lastInteractDirection;
+
+    private void Start()
+    {
+        inputs.OnInteractAction += Inputs_OnInteractAction;
+    }
+
+    private void Inputs_OnInteractAction(object sender, EventArgs e)
+    {
+        Vector2 inputVector = inputs.GetMovementVectorNormalized();
+
+        Vector3 moveDirection = new Vector3(inputVector.x, 0f, inputVector.y);
+
+        if (moveDirection != Vector3.zero)
+        {
+            lastInteractDirection = moveDirection;
+        }
+
+        if (Physics.Raycast(transform.position, lastInteractDirection, out RaycastHit raycastHit, interactDistance, countersLayerMask))
+        {
+            // using try for null check
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                // has ClearCounter component
+                clearCounter.Interact();
+            }
+        }
+    }
 
     private void Update()
     {
@@ -47,7 +76,6 @@ public class Player : MonoBehaviour
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
                 // has ClearCounter component
-                clearCounter.Interact();
             }
         }
     }
