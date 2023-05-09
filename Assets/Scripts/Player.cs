@@ -1,28 +1,67 @@
 using UnityEngine;
 
-/* ****************************************************************************************
- * 
- *      THIS CODE IS PURELY FOR TESTING PURPOSES,
- *      AFTER TESTING PHASE, CODE WILL BE REFACTORED TO USE THE NEW UNITY'S INPUT SYSTEM.
- * 
- * **************************************************************************************** */
-
-
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed;
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
+
+    [Header("Physics")]
+    [SerializeField] private float playerRadius;
+    [SerializeField] private float playerHeight;
 
     private bool isWalking;
 
+    // references
     [SerializeField] private Inputs inputs;
 
     private void Update()
     {
         Vector2 inputVector = inputs.GetMovementVectorNormalized();
+
         Vector3 moveDirection = new Vector3(inputVector.x, 0f, inputVector.y);
-        transform.position += moveDirection * movementSpeed * Time.deltaTime;  
+
+        float moveDistance = moveSpeed * Time.deltaTime;
+        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirection, moveDistance);
+
+        if(!canMove)
+        {
+            // cant move towards move direction
+
+            // move on X
+            Vector3 moveDirectionX = new Vector3(moveDirection.x, 0, 0).normalized;
+            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirectionX, moveDistance);
+
+            if(canMove)
+            {
+                // can move on X
+                moveDirection = moveDirectionX;
+            } else
+            {
+                // cannot move on X
+
+                // move on Z
+                Vector3 moveDirectionZ = new Vector3(0, 0, moveDirection.z).normalized;
+                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirectionZ, moveDistance);
+            
+                if (canMove)
+                {
+                    // can move on Z
+                    moveDirection = moveDirectionZ;
+                } else
+                {
+                    // cant move in any direction
+                }
+            }
+        }
+
+        if (canMove)
+        {
+            transform.position += moveDirection * moveDistance;
+        }
+
         isWalking = moveDirection != Vector3.zero;
+
         transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
     }
 

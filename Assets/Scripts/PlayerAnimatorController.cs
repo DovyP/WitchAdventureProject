@@ -4,6 +4,7 @@ public class PlayerAnimatorController : MonoBehaviour
 {
     private const string IS_WALKING = "IsWalking";
 
+    // references
     [SerializeField] private Player player;
     private Animator animator;
 
