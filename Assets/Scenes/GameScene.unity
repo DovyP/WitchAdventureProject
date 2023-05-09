@@ -1052,6 +1052,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1862923689}
+--- !u!114 &1142461735 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5480957375663942423, guid: f955dab22b338da4699de1c8cb2223aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 457858812}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08347c3369699f745b84348ddb189321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1166703718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2227,6 +2239,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 5480957375663942423, guid: f955dab22b338da4699de1c8cb2223aa,
+        type: 3}
+      propertyPath: testing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480957375663942423, guid: f955dab22b338da4699de1c8cb2223aa,
+        type: 3}
+      propertyPath: secondClearCounter
+      value: 
+      objectReference: {fileID: 1142461735}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
