@@ -1,35 +1,24 @@
 using UnityEngine;
 
-public class ClearCounter : MonoBehaviour
+public class ClearCounter : MonoBehaviour, IHerbloreObjectParent
 {
     [SerializeField] private HerbloreObjectSO herbloreObjectSO;
     [SerializeField] private Transform counterTop;
-    [SerializeField] private ClearCounter secondClearCounter;
-    [SerializeField] private bool testing;
 
     private HerbloreObject herbloreObject;
 
-    private void Update()
-    {
-        if (testing && Input.GetKeyDown(KeyCode.T))
-        {
-            if (herbloreObject != null)
-            {
-                herbloreObject.SetClearCounter(secondClearCounter);
-            }
-        }
-    }
 
-    public void Interact()
+    public void Interact(Player player)
     {
         if (herbloreObject == null)
         {
             Transform herbloreObjectTransform = Instantiate(herbloreObjectSO.prefab, counterTop);
-            herbloreObjectTransform.GetComponent<HerbloreObject>().SetClearCounter(this);
+            herbloreObjectTransform.GetComponent<HerbloreObject>().SetHerbloreObjectParent(this);
         }
         else
         {
-            Debug.Log(herbloreObject.GetClearCounter());
+            // take object/give to player
+            herbloreObject.SetHerbloreObjectParent(player);
         }
     }
 

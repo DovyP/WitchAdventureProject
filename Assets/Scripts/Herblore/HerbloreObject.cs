@@ -4,28 +4,28 @@ public class HerbloreObject : MonoBehaviour
 {
     [SerializeField] private HerbloreObjectSO herbloreObjectSO;
 
-    private ClearCounter clearCounter;
+    private IHerbloreObjectParent herbloreObjectParent;
 
     public HerbloreObjectSO GetHerbloreObjectSO() { return herbloreObjectSO; }
 
-    public void SetClearCounter(ClearCounter clearCounter)
+    public void SetHerbloreObjectParent(IHerbloreObjectParent herbloreObjectParent)
     {
-        if(this.clearCounter != null)
+        if(this.herbloreObjectParent != null)
         {
-            this.clearCounter.ClearHerbloreObject();
+            this.herbloreObjectParent.ClearHerbloreObject();
         }
 
-        this.clearCounter = clearCounter;
+        this.herbloreObjectParent = herbloreObjectParent;
 
-        if (clearCounter.HasHerbloreObject())
+        if (herbloreObjectParent.HasHerbloreObject())
         {
-            Debug.LogError("Counter already has a HerbloreObject!");
+            Debug.LogError("IHerbloreObjectParent already has a HerbloreObject!");
         }
 
-        clearCounter.SetHerbloreObject(this);
+        herbloreObjectParent.SetHerbloreObject(this);
 
-        transform.parent = clearCounter.GetHerbloreObjectFollowTransform();
+        transform.parent = herbloreObjectParent.GetHerbloreObjectFollowTransform();
         transform.localPosition = Vector3.zero;
     }
-    public ClearCounter GetClearCounter() { return clearCounter; }
+    public IHerbloreObjectParent GetHerbloreObjectParent() { return herbloreObjectParent; }
 }

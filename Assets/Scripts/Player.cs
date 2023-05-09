@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IHerbloreObjectParent
 {
     public static Player Instance { get; private set; }
 
@@ -24,11 +24,13 @@ public class Player : MonoBehaviour
     [Header("References")]
     [SerializeField] private Inputs inputs;
     [SerializeField] private LayerMask countersLayerMask;
+    [SerializeField] private Transform herbloreObjectHolder;
 
 
     private bool isWalking;
     private Vector3 lastInteractDirection;
     private ClearCounter selectedCounter;
+    private HerbloreObject herbloreObject;
 
     private void Awake()
     {
@@ -48,7 +50,7 @@ public class Player : MonoBehaviour
     {
         if(selectedCounter != null)
         {
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
         }
     }
 
@@ -156,5 +158,30 @@ public class Player : MonoBehaviour
         {
             selectedCounter = selectedCounter
         });
+    }
+
+    public Transform GetHerbloreObjectFollowTransform()
+    {
+        return herbloreObjectHolder;
+    }
+
+    public void SetHerbloreObject(HerbloreObject herbloreObject)
+    {
+        this.herbloreObject = herbloreObject;
+    }
+
+    public HerbloreObject GetHerbloreObject()
+    {
+        return herbloreObject;
+    }
+
+    public void ClearHerbloreObject()
+    {
+        herbloreObject = null;
+    }
+
+    public bool HasHerbloreObject()
+    {
+        return herbloreObject != null;
     }
 }
