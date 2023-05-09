@@ -679,6 +679,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5480957375663942423, guid: f955dab22b338da4699de1c8cb2223aa,
+        type: 3}
+      propertyPath: herbloreObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: d3c35c24a22a1e54bb2684c92eaacda0,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
