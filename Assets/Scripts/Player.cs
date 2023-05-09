@@ -11,6 +11,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
+    [SerializeField] private float rotateSpeed;
+
+    private bool isWalking;
 
     private void Update()
     {
@@ -36,6 +39,13 @@ public class Player : MonoBehaviour
         inputVector = inputVector.normalized;
 
         Vector3 moveDirection = new Vector3(inputVector.x, 0f, inputVector.y);
-        transform.position += moveDirection * movementSpeed * Time.deltaTime;
+        transform.position += moveDirection * movementSpeed * Time.deltaTime;  
+        isWalking = moveDirection != Vector3.zero;
+        transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
     }
 }
