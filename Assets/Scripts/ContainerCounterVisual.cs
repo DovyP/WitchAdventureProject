@@ -10,6 +10,7 @@ public class ContainerCounterVisual : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        //ss
     }
 
     private void Start()
