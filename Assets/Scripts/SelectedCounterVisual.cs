@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SelectedCounterVisual : MonoBehaviour
 {
-    [SerializeField] private ClearCounter clearCounter;
-    [SerializeField] private GameObject selectedCounterGFX;
+    [SerializeField] private BaseCounter baseCounter;
+    [SerializeField] private GameObject[] selectedCounterGfxArray;
 
     private void Start()
     {
@@ -12,7 +12,7 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Player_OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
     {
-        if (e.selectedCounter == clearCounter)
+        if (e.selectedCounter == baseCounter)
         {
             EnableSelectedCounterGFX();
         }
@@ -24,11 +24,17 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void EnableSelectedCounterGFX()
     {
-        selectedCounterGFX.SetActive(true);
+        foreach (GameObject gfxObject in selectedCounterGfxArray)
+        {
+            gfxObject.SetActive(true);
+        }
     }
 
     private void DisableSelectedCounterGFX()
     {
-        selectedCounterGFX.SetActive(false);
+        foreach (GameObject gfxObject in selectedCounterGfxArray)
+        {
+            gfxObject.SetActive(false);
+        }
     }
 }
