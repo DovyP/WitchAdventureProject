@@ -454,8 +454,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterTop: {fileID: 4191976054891877287}
-  grindedHerbloreObjectSO: {fileID: 11400000, guid: 422b3e2fbfe59cf4497d0f735b2e0399,
-    type: 2}
+  grindingRecipeSOArray:
+  - {fileID: 11400000, guid: 0f61006d631bd314e93b4c9334234dac, type: 2}
+  - {fileID: 11400000, guid: 0d003bde72fad9849a9764d68c07d078, type: 2}
 --- !u!1001 &7608535180410669951
 PrefabInstance:
   m_ObjectHideFlags: 0

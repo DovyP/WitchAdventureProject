@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GrinderCounter : BaseCounter
 {
-    [SerializeField] private HerbloreObjectSO grindedHerbloreObjectSO;
+    [SerializeField] private GrindingRecipeSO[] grindingRecipeSOArray;
 
     public override void Interact(Player player)
     {
@@ -13,7 +13,11 @@ public class GrinderCounter : BaseCounter
             if (player.HasHerbloreObject())
             {
                 // player has herblore object
-                player.GetHerbloreObject().SetHerbloreObjectParent(this);
+                if (HasRecipeWithInput(player.GetHerbloreObject().GetHerbloreObjectSO()))
+                {
+                    // player has herblore object that can be grinded
+                    player.GetHerbloreObject().SetHerbloreObjectParent(this);
+                }
             }
             else
             {
@@ -37,12 +41,41 @@ public class GrinderCounter : BaseCounter
 
     public override void InteractAlternate(Player player)
     {
-        if (HasHerbloreObject())
+        if (HasHerbloreObject() && HasRecipeWithInput(GetHerbloreObject().GetHerbloreObjectSO()))
         {
-            // there is a herblore object on the counter
+            // there is a herblore object on the counter and it can be grinded
+            HerbloreObjectSO outputHerbloreObjectSO = GetOutputFromInput(GetHerbloreObject().GetHerbloreObjectSO());
+            
             GetHerbloreObject().DestroySelf();
 
-            HerbloreObject.SpawnHerbloreObject(grindedHerbloreObjectSO, this);
+            HerbloreObject.SpawnHerbloreObject(outputHerbloreObjectSO, this);
         }
+    }
+
+    private bool HasRecipeWithInput(HerbloreObjectSO inputHerbloreObjectSO)
+    {
+        foreach (GrindingRecipeSO grindingRecipeSO in grindingRecipeSOArray)
+        {
+            if (grindingRecipeSO.input == inputHerbloreObjectSO)
+            {
+                // has recipe
+                return true;
+            }
+        }
+        // doesnt have recipe
+        return false;
+    }
+
+    private HerbloreObjectSO GetOutputFromInput(HerbloreObjectSO inputHerbloreObjectSO)
+    {
+        foreach(GrindingRecipeSO grindingRecipeSO in grindingRecipeSOArray)
+        {
+            if(grindingRecipeSO.input == inputHerbloreObjectSO)
+            {
+                return grindingRecipeSO.output;
+            }
+        }
+
+        return null;
     }
 }
