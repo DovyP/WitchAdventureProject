@@ -11,6 +11,11 @@ public class BaseCounter : MonoBehaviour, IHerbloreObjectParent
 
     }
 
+    public virtual void InteractAlternate(Player player)
+    {
+
+    }
+
     public Transform GetHerbloreObjectFollowTransform()
     {
         return counterTop;

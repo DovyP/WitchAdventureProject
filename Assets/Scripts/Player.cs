@@ -44,6 +44,15 @@ public class Player : MonoBehaviour, IHerbloreObjectParent
     private void Start()
     {
         inputs.OnInteractAction += Inputs_OnInteractAction;
+        inputs.OnInteractAlternateAction += Inputs_OnInteractAlternateAction;
+    }
+
+    private void Inputs_OnInteractAlternateAction(object sender, EventArgs e)
+    {
+        if (selectedCounter != null)
+        {
+            selectedCounter.InteractAlternate(this);
+        }
     }
 
     private void Inputs_OnInteractAction(object sender, EventArgs e)

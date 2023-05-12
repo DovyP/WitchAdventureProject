@@ -28,4 +28,20 @@ public class HerbloreObject : MonoBehaviour
         transform.localPosition = Vector3.zero;
     }
     public IHerbloreObjectParent GetHerbloreObjectParent() { return herbloreObjectParent; }
+
+    public void DestroySelf()
+    {
+        herbloreObjectParent.ClearHerbloreObject();
+        Destroy(gameObject);
+    }
+
+    public static HerbloreObject SpawnHerbloreObject(HerbloreObjectSO herbloreObjectSO, IHerbloreObjectParent herbloreObjectParent)
+    {
+        Transform herbloreObjectTransform = Instantiate(herbloreObjectSO.prefab);
+        HerbloreObject herbloreObject = herbloreObjectTransform.GetComponent<HerbloreObject>();
+
+        herbloreObject.SetHerbloreObjectParent(herbloreObjectParent);
+
+        return herbloreObject;
+    }
 }

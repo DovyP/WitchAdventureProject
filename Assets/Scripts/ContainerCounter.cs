@@ -13,8 +13,8 @@ public class ContainerCounter : BaseCounter
         if (!player.HasHerbloreObject())
         {
             // player doesnt have herblore object so it can be given to the player
-            Transform herbloreObjectTransform = Instantiate(herbloreObjectSO.prefab);
-            herbloreObjectTransform.GetComponent<HerbloreObject>().SetHerbloreObjectParent(player);
+            HerbloreObject.SpawnHerbloreObject(herbloreObjectSO, player);
+
             OnPlayerTakeFromContainer?.Invoke(this, EventArgs.Empty);
         }
     }
