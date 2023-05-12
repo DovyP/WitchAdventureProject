@@ -75,6 +75,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 9138962338382574495}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9784e0484ba0f5546aeabb070022b873,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1289612912040657611}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9784e0484ba0f5546aeabb070022b873, type: 3}
 --- !u!4 &442159283883565138 stripped
@@ -227,6 +231,85 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 9784e0484ba0f5546aeabb070022b873,
     type: 3}
   m_PrefabInstance: {fileID: 3333661816360167976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4009984072769543144
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 442159283883565138}
+    m_Modifications:
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.735
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.709
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108307476719972713, guid: 589b191ee5d8db849807a7100f1aed0f,
+        type: 3}
+      propertyPath: m_Name
+      value: Grinder Tool
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 589b191ee5d8db849807a7100f1aed0f, type: 3}
+--- !u!4 &1289612912040657611 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2757314960116144419, guid: 589b191ee5d8db849807a7100f1aed0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4009984072769543144}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6276847258806776469
 PrefabInstance:

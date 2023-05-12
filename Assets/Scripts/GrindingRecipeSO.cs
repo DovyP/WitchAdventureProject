@@ -5,4 +5,5 @@ public class GrindingRecipeSO : ScriptableObject
 {
     public HerbloreObjectSO input;
     public HerbloreObjectSO output;
+    public int grindingProgressMax;
 }
