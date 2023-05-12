@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0af258454924add4cad172de49a7d1f1, type: 3}
-  m_Name: Vial Of Water
+  m_Name: Limpwurt Root
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7967642178329998186, guid: d6977c9117c53224b8aff8282af82a63, type: 3}
-  iconSprite: {fileID: 21300000, guid: afc1713dfafbde745963ad07d7c7d5dc, type: 3}
-  objectName: Vial Of Water
+  prefab: {fileID: 5112764507949755687, guid: 418a1e8b1e38b2a47bbe2f4d6d4a99ae, type: 3}
+  iconSprite: {fileID: 21300000, guid: 0b430d536bd899b4b95a43dfa725af57, type: 3}
+  objectName: Limpwurt Root

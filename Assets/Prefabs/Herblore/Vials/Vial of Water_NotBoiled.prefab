@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7967642178329998186}
   - component: {fileID: 6506215492814379546}
   m_Layer: 0
-  m_Name: Vial of Water
+  m_Name: Vial of Water_NotBoiled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

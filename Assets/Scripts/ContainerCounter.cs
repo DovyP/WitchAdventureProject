@@ -10,8 +10,12 @@ public class ContainerCounter : BaseCounter
 
     public override void Interact(Player player)
     {
-        Transform herbloreObjectTransform = Instantiate(herbloreObjectSO.prefab);
-        herbloreObjectTransform.GetComponent<HerbloreObject>().SetHerbloreObjectParent(player);
-        OnPlayerTakeFromContainer?.Invoke(this, EventArgs.Empty);
+        if (!player.HasHerbloreObject())
+        {
+            // player doesnt have herblore object so it can be given to the player
+            Transform herbloreObjectTransform = Instantiate(herbloreObjectSO.prefab);
+            herbloreObjectTransform.GetComponent<HerbloreObject>().SetHerbloreObjectParent(player);
+            OnPlayerTakeFromContainer?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

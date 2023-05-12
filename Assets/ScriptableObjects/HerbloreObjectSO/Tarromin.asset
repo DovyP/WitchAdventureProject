@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af258454924add4cad172de49a7d1f1, type: 3}
+  m_Name: Tarromin
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5112764507949755687, guid: 454c032b7c6183142991ee1685cf9394, type: 3}
+  iconSprite: {fileID: 21300000, guid: 78d98d68ec5af914fb29e68773daa074, type: 3}
+  objectName: Tarromin
