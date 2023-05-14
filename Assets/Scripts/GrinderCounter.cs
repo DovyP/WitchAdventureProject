@@ -1,7 +1,17 @@
+using System;
 using UnityEngine;
 
 public class GrinderCounter : BaseCounter
 {
+    public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
+
+    public class OnProgressChangedEventArgs : EventArgs
+    {
+        public float progressNormalized;
+    }
+
+    public event EventHandler OnGrind;
+
     [SerializeField] private GrindingRecipeSO[] grindingRecipeSOArray;
 
     private int grindingProgress;
@@ -20,6 +30,14 @@ public class GrinderCounter : BaseCounter
                     // player has herblore object that can be grinded
                     player.GetHerbloreObject().SetHerbloreObjectParent(this);
                     grindingProgress = 0;
+
+                    GrindingRecipeSO grindingRecipeSO = GetGrindingRecipeSOWithInput(GetHerbloreObject().GetHerbloreObjectSO());
+
+                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                    {
+                        // make sure to avoid converting into int, casting one variable as (float)
+                        progressNormalized = (float)grindingProgress / grindingRecipeSO.grindingProgressMax
+                    });
                 }
             }
             else
@@ -49,7 +67,15 @@ public class GrinderCounter : BaseCounter
             // there is a herblore object on the counter and it can be grinded
             grindingProgress++;
 
+            OnGrind?.Invoke(this, EventArgs.Empty);
+
             GrindingRecipeSO grindingRecipeSO = GetGrindingRecipeSOWithInput(GetHerbloreObject().GetHerbloreObjectSO());
+
+            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+            {
+                // make sure to avoid converting into int, casting one variable as (float)
+                progressNormalized = (float)grindingProgress / grindingRecipeSO.grindingProgressMax
+            });
 
             if (grindingProgress >= grindingRecipeSO.grindingProgressMax)
             {
