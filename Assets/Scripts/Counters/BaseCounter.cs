@@ -8,7 +8,7 @@ public class BaseCounter : MonoBehaviour, IHerbloreObjectParent
 
     public virtual void Interact(Player player)
     {
-
+        Debug.LogError("BaseCounter.Interact();");
     }
 
     public virtual void InteractAlternate(Player player)
