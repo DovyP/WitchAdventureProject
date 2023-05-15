@@ -1,15 +1,9 @@
 using System;
 using UnityEngine;
 
-public class GrinderCounter : BaseCounter
+public class GrinderCounter : BaseCounter, IHasProgress
 {
-    public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
-
-    public class OnProgressChangedEventArgs : EventArgs
-    {
-        public float progressNormalized;
-    }
-
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler OnGrind;
 
     [SerializeField] private GrindingRecipeSO[] grindingRecipeSOArray;
@@ -33,7 +27,7 @@ public class GrinderCounter : BaseCounter
 
                     GrindingRecipeSO grindingRecipeSO = GetGrindingRecipeSOWithInput(GetHerbloreObject().GetHerbloreObjectSO());
 
-                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                     {
                         // make sure to avoid converting into int, casting one variable as (float)
                         progressNormalized = (float)grindingProgress / grindingRecipeSO.grindingProgressMax
@@ -71,7 +65,7 @@ public class GrinderCounter : BaseCounter
 
             GrindingRecipeSO grindingRecipeSO = GetGrindingRecipeSOWithInput(GetHerbloreObject().GetHerbloreObjectSO());
 
-            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+            OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
             {
                 // make sure to avoid converting into int, casting one variable as (float)
                 progressNormalized = (float)grindingProgress / grindingRecipeSO.grindingProgressMax

@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-public class BoilingCounter : BaseCounter
+public class BoilingCounter : BaseCounter, IHasProgress
 {
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
     public class OnStateChangedEventArgs : EventArgs
     {
@@ -20,12 +21,13 @@ public class BoilingCounter : BaseCounter
     [SerializeField] private BoilingRecipeSO[] boilingRecipeSOArray;
     [SerializeField] private BurningRecipeSO[] burningRecipeSOArray;
 
-    private State currentState;
+    private BoilingRecipeSO boilingRecipeSO;
+    private BurningRecipeSO burningRecipeSO;
 
     private float boilingTimer;
     private float burningTimer;
-    private BoilingRecipeSO boilingRecipeSO;
-    private BurningRecipeSO burningRecipeSO;
+
+    private State currentState;
 
     private void Start()
     {
@@ -42,6 +44,11 @@ public class BoilingCounter : BaseCounter
                     break;
                 case State.Boiling:
                     boilingTimer += Time.deltaTime;
+
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                    {
+                        progressNormalized = boilingTimer / boilingRecipeSO.boilingTimerMax
+                    });
 
                     if (boilingTimer >= boilingRecipeSO.boilingTimerMax)
                     {
@@ -65,6 +72,11 @@ public class BoilingCounter : BaseCounter
                 case State.Boiled:
                     burningTimer += Time.deltaTime;
 
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                    {
+                        progressNormalized = burningTimer / burningRecipeSO.burningTimerMax
+                    });
+
                     if (burningTimer >= burningRecipeSO.burningTimerMax)
                     {
                         // ruined
@@ -77,6 +89,11 @@ public class BoilingCounter : BaseCounter
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
                         {
                             currentState = currentState
+                        });
+
+                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                        {
+                            progressNormalized = 0f
                         });
                     }
                     break;
@@ -110,6 +127,11 @@ public class BoilingCounter : BaseCounter
                     {
                         currentState = currentState
                     });
+
+                    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                    {
+                        progressNormalized = boilingTimer / boilingRecipeSO.boilingTimerMax
+                    });
                 }
             }
             else
@@ -134,6 +156,11 @@ public class BoilingCounter : BaseCounter
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
                 {
                     currentState = currentState
+                });
+
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                {
+                    progressNormalized = 0f
                 });
             }
         }

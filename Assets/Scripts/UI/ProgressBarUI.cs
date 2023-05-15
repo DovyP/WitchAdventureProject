@@ -3,14 +3,23 @@ using UnityEngine.UI;
 
 public class ProgressBarUI : MonoBehaviour
 {
-    [SerializeField] private GrinderCounter grinderCounter;
+    [SerializeField] private GameObject hasProgressGO;
     [SerializeField] private Image barImage;
+
+    private IHasProgress hasProgress;
 
     // TODO: event to update barImage
 
     private void Start()
     {
-        grinderCounter.OnProgressChanged += GrinderCounter_OnProgressChanged;
+        hasProgress = hasProgressGO.GetComponent<IHasProgress>();
+
+        if (hasProgress == null)
+        {
+            Debug.LogError("GO: " + hasProgressGO + " doesn't have IHasProgress component");
+        }
+
+        hasProgress.OnProgressChanged += HasProgress_OnProgressChanged;
 
         // empty bar at start
         barImage.fillAmount = 0f;
@@ -19,7 +28,7 @@ public class ProgressBarUI : MonoBehaviour
         BarDeactivate();
     }
 
-    private void GrinderCounter_OnProgressChanged(object sender, GrinderCounter.OnProgressChangedEventArgs e)
+    private void HasProgress_OnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
     {
         barImage.fillAmount = e.progressNormalized;
 
