@@ -1,8 +1,15 @@
+using System;
 using UnityEngine;
 
 public class BoilingCounter : BaseCounter
 {
-    private enum State
+    public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+    public class OnStateChangedEventArgs : EventArgs
+    {
+        public State currentState;
+    }
+
+    public enum State
     {
         Idle,
         Boiling,
@@ -48,6 +55,11 @@ public class BoilingCounter : BaseCounter
                         burningTimer = 0f;
 
                         burningRecipeSO = GetBurningRecipeSOWithInput(GetHerbloreObject().GetHerbloreObjectSO());
+
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                        {
+                            currentState = currentState
+                        });
                     }
                     break;
                 case State.Boiled:
@@ -61,6 +73,11 @@ public class BoilingCounter : BaseCounter
                         HerbloreObject.SpawnHerbloreObject(burningRecipeSO.output, this);
 
                         currentState = State.Ruined;
+
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                        {
+                            currentState = currentState
+                        });
                     }
                     break;
                 case State.Ruined:
@@ -88,6 +105,11 @@ public class BoilingCounter : BaseCounter
                     currentState = State.Boiling;
 
                     boilingTimer = 0f;
+
+                    OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                    {
+                        currentState = currentState
+                    });
                 }
             }
             else
@@ -106,6 +128,13 @@ public class BoilingCounter : BaseCounter
             {
                 // player doesnt have herblore object
                 GetHerbloreObject().SetHerbloreObjectParent(player);
+
+                currentState = State.Idle;
+
+                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                {
+                    currentState = currentState
+                });
             }
         }
     }
