@@ -145,6 +145,27 @@ public class BoilingCounter : BaseCounter, IHasProgress
             if (player.HasHerbloreObject())
             {
                 // player has herblore object
+                if (player.GetHerbloreObject().TryGetPlate(out PlateHerbloreObject plateHerbloreObject))
+                {
+                    // player is holding a plate
+                    if (plateHerbloreObject.TryAddIngredient(GetHerbloreObject().GetHerbloreObjectSO()))
+                    {
+                        GetHerbloreObject().DestroySelf();
+
+
+                        currentState = State.Idle;
+
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                        {
+                            currentState = currentState
+                        });
+
+                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+                        {
+                            progressNormalized = 0f
+                        });
+                    }
+                }
             }
             else
             {

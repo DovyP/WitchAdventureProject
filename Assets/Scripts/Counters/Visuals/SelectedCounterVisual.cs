@@ -5,6 +5,13 @@ public class SelectedCounterVisual : MonoBehaviour
     [SerializeField] private BaseCounter baseCounter;
     [SerializeField] private GameObject[] selectedCounterGfxArray;
 
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Start()
     {
         Player.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
@@ -15,10 +22,12 @@ public class SelectedCounterVisual : MonoBehaviour
         if (e.selectedCounter == baseCounter)
         {
             EnableSelectedCounterGFX();
+            animator.enabled = true;
         }
         else
         {
             DisableSelectedCounterGFX();
+            animator.enabled = false;
         }
     }
 

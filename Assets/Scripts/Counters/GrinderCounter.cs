@@ -45,6 +45,14 @@ public class GrinderCounter : BaseCounter, IHasProgress
             if (player.HasHerbloreObject())
             {
                 // player has herblore object
+                if (player.GetHerbloreObject().TryGetPlate(out PlateHerbloreObject plateHerbloreObject))
+                {
+                    // player is holding a plate
+                    if (plateHerbloreObject.TryAddIngredient(GetHerbloreObject().GetHerbloreObjectSO()))
+                    {
+                        GetHerbloreObject().DestroySelf();
+                    }
+                }
             }
             else
             {

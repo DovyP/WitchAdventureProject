@@ -35,6 +35,20 @@ public class HerbloreObject : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public bool TryGetPlate(out PlateHerbloreObject plateHerbloreObject)
+    {
+        if (this is PlateHerbloreObject)
+        {
+            plateHerbloreObject = this as PlateHerbloreObject;
+            return true;
+        }
+        else
+        {
+            plateHerbloreObject = null;
+            return false;
+        }
+    }
+
     public static HerbloreObject SpawnHerbloreObject(HerbloreObjectSO herbloreObjectSO, IHerbloreObjectParent herbloreObjectParent)
     {
         Transform herbloreObjectTransform = Instantiate(herbloreObjectSO.prefab);

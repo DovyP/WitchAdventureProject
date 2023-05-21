@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08347c3369699f745b84348ddb189321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  herbloreObjectSO: {fileID: 11400000, guid: b47b9fef66990454fae438b85e8e6791, type: 2}
   counterTop: {fileID: 7418322600650154645}
+  herbloreObjectSO: {fileID: 11400000, guid: b47b9fef66990454fae438b85e8e6791, type: 2}
 --- !u!1 &5511333097704867179
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d56095066d87844b7968687d261e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearCounter: {fileID: 5480957375663942423}
-  selectedCounterGFX: {fileID: 8450355442818906060}
+  baseCounter: {fileID: 5480957375663942423}
+  selectedCounterGfxArray: []
 --- !u!1 &8450355442818906060
 GameObject:
   m_ObjectHideFlags: 0

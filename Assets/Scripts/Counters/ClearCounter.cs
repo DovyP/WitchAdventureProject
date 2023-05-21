@@ -26,6 +26,26 @@ public class ClearCounter : BaseCounter
             if (player.HasHerbloreObject())
             {
                 // player has herblore object
+                if(player.GetHerbloreObject().TryGetPlate(out PlateHerbloreObject plateHerbloreObject))
+                {
+                    // player is holding a plate
+                    if (plateHerbloreObject.TryAddIngredient(GetHerbloreObject().GetHerbloreObjectSO()))
+                    {
+                        GetHerbloreObject().DestroySelf();
+                    }
+                }
+                else
+                {
+                    // player not holding a plate but something else
+                    if(GetHerbloreObject().TryGetPlate(out plateHerbloreObject))
+                    {
+                        // counter is holding a plate
+                     if (plateHerbloreObject.TryAddIngredient(player.GetHerbloreObject().GetHerbloreObjectSO()))
+                        {
+                            player.GetHerbloreObject().DestroySelf();
+                        }
+                    }
+                }
             }
             else
             {
