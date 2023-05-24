@@ -9,6 +9,8 @@ public class DeliveryCounter : BaseCounter
             if(player.GetHerbloreObject().TryGetPlate(out PlateHerbloreObject plateHerbloreObject))
             {
                 // delivery counter takes plates
+
+                DeliveryManager.instance.DeliverRecipe(plateHerbloreObject);
                 player.GetHerbloreObject().DestroySelf();
             }
         }
