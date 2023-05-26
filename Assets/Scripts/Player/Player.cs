@@ -5,6 +5,7 @@ public class Player : MonoBehaviour, IHerbloreObjectParent
 {
     public static Player Instance { get; private set; }
 
+    public event EventHandler OnPickUpObject;
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
@@ -177,6 +178,11 @@ public class Player : MonoBehaviour, IHerbloreObjectParent
     public void SetHerbloreObject(HerbloreObject herbloreObject)
     {
         this.herbloreObject = herbloreObject;
+
+        if (herbloreObject != null)
+        {
+            OnPickUpObject?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public HerbloreObject GetHerbloreObject()

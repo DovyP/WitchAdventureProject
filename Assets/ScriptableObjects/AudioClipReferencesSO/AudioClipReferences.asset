@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beab4d7894b596c459cfb7e824c7bdc5, type: 3}
+  m_Name: AudioClipReferences
+  m_EditorClassIdentifier: 
+  grind: {fileID: 8300000, guid: 8b8503ccf9789aa429378979871cebea, type: 3}
+  deliveryFailed: {fileID: 8300000, guid: 2eeefb19cd7093d489dadf0410e7ad41, type: 3}
+  deliveryCompleted: {fileID: 8300000, guid: f1f9801fbe48dd14d8e86a1af3f25208, type: 3}
+  footstep: {fileID: 8300000, guid: ff07f70d1ba271241bba1fa4f2ca3b8e, type: 3}
+  objectDrop: {fileID: 8300000, guid: b8d756e83a04c78488ec81a3c027c28e, type: 3}
+  objectPickup: {fileID: 8300000, guid: f323aa8dcefa97848aa5e6ae225cd5f3, type: 3}
+  boiler: {fileID: 8300000, guid: 4d7e1c4bc073a7c4abce9f79173995ae, type: 3}
+  trashDisposal: {fileID: 8300000, guid: cfa53ea449fa9bb4cb0275dd10be6bae, type: 3}
+  warning: {fileID: 8300000, guid: ed2dc6aef9135004bb00598139611270, type: 3}

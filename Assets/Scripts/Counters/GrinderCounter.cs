@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class GrinderCounter : BaseCounter, IHasProgress
 {
+    // triggers when any grinding counter triggers grinding action
+    public static event EventHandler OnAnyGrind;
+
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler OnGrind;
 
@@ -70,6 +73,7 @@ public class GrinderCounter : BaseCounter, IHasProgress
             grindingProgress++;
 
             OnGrind?.Invoke(this, EventArgs.Empty);
+            OnAnyGrind?.Invoke(this, EventArgs.Empty);
 
             GrindingRecipeSO grindingRecipeSO = GetGrindingRecipeSOWithInput(GetHerbloreObject().GetHerbloreObjectSO());
 
