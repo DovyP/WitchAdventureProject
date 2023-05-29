@@ -50,6 +50,9 @@ public class Player : MonoBehaviour, IHerbloreObjectParent
 
     private void Inputs_OnInteractAlternateAction(object sender, EventArgs e)
     {
+        if (!GameManager.instance.IsGameInProgress())
+            return;
+
         if (selectedCounter != null)
         {
             selectedCounter.InteractAlternate(this);
@@ -58,7 +61,10 @@ public class Player : MonoBehaviour, IHerbloreObjectParent
 
     private void Inputs_OnInteractAction(object sender, EventArgs e)
     {
-        if(selectedCounter != null)
+        if (!GameManager.instance.IsGameInProgress())
+            return;
+
+        if (selectedCounter != null)
         {
             selectedCounter.Interact(this);
         }
