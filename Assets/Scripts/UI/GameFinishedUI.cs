@@ -7,14 +7,14 @@ public class GameFinishedUI : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.OnStateChange += GameManager_OnStateChange;
+        GameManager.Instance.OnStateChange += GameManager_OnStateChange;
 
         GameFinishedUIDisable();
     }
 
     private void GameManager_OnStateChange(object sender, System.EventArgs e)
     {
-        if (GameManager.instance.IsGameFinished())
+        if (GameManager.Instance.IsGameFinished())
         {
             GameFinishedUIEnable();
 

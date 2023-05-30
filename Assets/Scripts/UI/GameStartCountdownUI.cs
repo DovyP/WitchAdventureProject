@@ -7,14 +7,14 @@ public class GameStartCountdownUI : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.OnStateChange += GameManager_OnStateChange;
+        GameManager.Instance.OnStateChange += GameManager_OnStateChange;
 
         StartCountdownDisable();
     }
 
     private void GameManager_OnStateChange(object sender, System.EventArgs e)
     {
-        if (GameManager.instance.IsGameStarting())
+        if (GameManager.Instance.IsGameStarting())
         {
             StartCountdownEnable();
         }
@@ -26,7 +26,7 @@ public class GameStartCountdownUI : MonoBehaviour
 
     private void Update()
     {
-        startCountdownText.text = Mathf.Ceil(GameManager.instance.GetStartCountdown()).ToString();
+        startCountdownText.text = Mathf.Ceil(GameManager.Instance.GetStartCountdown()).ToString();
     }
 
     private void StartCountdownEnable()

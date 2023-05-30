@@ -6,6 +6,11 @@ public class GrinderCounter : BaseCounter, IHasProgress
     // triggers when any grinding counter triggers grinding action
     public static event EventHandler OnAnyGrind;
 
+    new public static void ResetStaticData()
+    {
+        OnAnyGrind = null;
+    }
+
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler OnGrind;
 

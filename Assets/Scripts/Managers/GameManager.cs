@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     public event EventHandler OnStateChange;
+    public event EventHandler OnGamePause;
+    public event EventHandler OnGameResume;
 
     private enum State
     {
@@ -22,11 +24,23 @@ public class GameManager : MonoBehaviour
     private float gameTimer;
     private float gameTimerMax = 15f;
 
+    private bool isGamePaused = false;
+
     private void Awake()
     {
-        instance = this;
+        Instance = this;
 
         state = State.GameNotStarted;
+    }
+
+    private void Start()
+    {
+        Inputs.Instance.OnPauseAction += Inputs_OnPauseAction;
+    }
+
+    private void Inputs_OnPauseAction(object sender, EventArgs e)
+    {
+        ToggleGamePause();
     }
 
     private void Update()
@@ -87,5 +101,21 @@ public class GameManager : MonoBehaviour
     public float GetGameTimerNormalized()
     {
         return 1 - (gameTimer / gameTimerMax);
+    }
+
+    public void ToggleGamePause()
+    {
+        isGamePaused = !isGamePaused;
+
+        if (isGamePaused)
+        {
+            Time.timeScale = 0f;
+            OnGamePause?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            OnGameResume?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

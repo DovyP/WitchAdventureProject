@@ -5,6 +5,11 @@ public class BaseCounter : MonoBehaviour, IHerbloreObjectParent
 {
     public static event EventHandler OnObjectDropOff;
 
+    public static void ResetStaticData()
+    {
+        OnObjectDropOff = null;
+    }
+
     [SerializeField] private Transform counterTop;
 
     private HerbloreObject herbloreObject;
